@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FS24 Stream Deck Icons - 300+ Controls</title>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="300+ Stream Deck icons for Microsoft Flight Simulator 2024 with normal and pressed states">
+    <meta name="keywords" content="Flight Simulator 2024, Stream Deck, Icons, Controls, FS24, MSFS">
+    <meta name="author" content="FS24 Stream Deck Icons">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="FS24 Stream Deck Icons - 300+ Controls">
+    <meta property="og:description" content="300+ Stream Deck icons for Microsoft Flight Simulator 2024 with normal and pressed states">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://playerunknown.github.io/fs24-streamdeck-icons">
+    <meta property="og:image" content="https://kick.com/favicon.ico">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="FS24 Stream Deck Icons - 300+ Controls">
+    <meta name="twitter:description" content="300+ Stream Deck icons for Microsoft Flight Simulator 2024">
+    <meta name="twitter:image" content="https://kick.com/favicon.ico">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://kick.com/favicon.ico">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Loading Indicator -->
+    <style>
+        body {
+            background: #1a1a1a;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .button-pair {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        canvas {
+            width: 72px;
+            height: 72px;
+            background: #1a1a1a;
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        canvas:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .state-label {
+            color: #00ffff;
+            font-size: 12px;
+            margin-top: -5px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+        }
+        .instructions {
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #00ffff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+        .category-header {
+            grid-column: 1 / -1;
+            margin: 30px 0 10px;
+            padding: 15px;
+            background: linear-gradient(90deg, #1a1a1a, #222, #1a1a1a);
+            border-radius: 8px;
+            text-align: center;
+            color: #00ffff;
+            font-size: 18px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+        #categorySelect {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            width: 300px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #categorySelect:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            border-color: rgba(0, 255, 255, 0.5);
+        }
+        #categorySelect option {
+            background: #1a1a1a;
+            color: #00ffff;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .stat-box {
+            text-align: center;
+        }
+        .stat-box i {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .stat-box span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .stat-box label {
+            display: block;
+            font-size: 12px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 12px;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            background: linear-gradient(to bottom, rgba(0, 255, 255, 0.05), transparent);
+        }
+        .footer p {
+            margin: 8px 0;
+        }
+        .social-link {
+            margin: 15px 0;
+        }
+        .social-link a {
+            color: #00ffff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .social-link a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .social-link i {
+            margin-right: 8px;
+            color: #00ffff;
+        }
+        #visitorCount, #downloadCount {
+            display: inline-block;
+            min-width: 30px;
+        }
+        .loading {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        .search-container {
+            position: relative;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        #searchInput {
+            width: 100%;
+            padding: 12px 40px 12px 20px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            color: #00ffff;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 16px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        #searchInput:focus {
+            outline: none;
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        #searchInput::placeholder {
+            color: rgba(0, 255, 255, 0.5);
+        }
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00ffff;
+            pointer-events: none;
+        }
+        .no-results {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+            grid-column: 1 / -1;
+        }
+        .categories-overview {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: linear-gradient(145deg, #222, #1a1a1a);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .category-item {
+            padding: 10px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 6px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+        .category-item:hover {
+            background: rgba(0, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            color: #00ffff;
+        }
+        .category-item:active {
+            transform: translateY(0);
+            background: rgba(0, 255, 255, 0.3);
+        }
+        .like-button {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+            margin: 0;
+            outline: none;
+        }
+        .like-button:hover {
+            color: #ff4444;
+            transform: scale(1.1);
+        }
+        .like-button.liked {
+            color: #ff4444;
+            animation: likeAnimation 0.5s ease;
+        }
+        @keyframes likeAnimation {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        .like-button i {
+            filter: drop-shadow(0 0 5px rgba(255, 68, 68, 0.5));
+        }
+        #likeCount {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ffff;
+            margin-top: 5px;
+        }
+        .tip-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .tip-button {
+            background: linear-gradient(145deg, #ff4444, #ff0000);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        .tip-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+            background: linear-gradient(145deg, #ff6666, #ff2222);
+        }
+        .tip-button:active {
+            transform: translateY(0) scale(0.95);
+        }
+        .tip-button i {
+            font-size: 20px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+        .tip-button span {
+            font-size: 14px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        .channel-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00ffff;
+            text-decoration: none;
+            margin-top: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: linear-gradient(90deg, rgba(255,0,0,0.1), rgba(255,0,0,0.2), rgba(255,0,0,0.1));
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+        }
+        .channel-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,0,0,0.8);
+            transform: translateY(-2px);
+            border-color: rgba(255, 0, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+        }
+        .channel-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 6px;
+            filter: drop-shadow(0 0 3px rgba(255,0,0,0.5));
+        }
+        .footer-logo {
+            display: block;
+            margin: 20px auto;
+            width: 80px;
+            height: 80px;
+            border-radius: 40px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .footer-logo:hover {
+            border-color: rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .kick-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(90deg, rgba(0,255,255,0.1), rgba(0,255,255,0.2), rgba(0,255,255,0.1));
+            border-radius: 8px;
+        }
+        .kick-logo {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            filter: drop-shadow(0 0 5px rgba(0,255,255,0.5));
+        }
+        .kick-link {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+        .kick-link:hover {
+            color: #fff;
+            text-shadow: 0 0 15px rgba(0,255,255,0.8);
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #00ffff;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .error-message {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff0000;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            display: none;
+        }
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .stats-container {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .stat-box {
+                flex: 1 1 calc(50% - 10px);
+            }
+            .search-container {
+                margin: 10px;
+            }
+            #categorySelect {
+                width: 90%;
+                margin: 10px auto;
+            }
+        }
+        /* Accessibility Focus Styles */
+        *:focus {
+            outline: 2px solid #00ffff;
+            outline-offset: 2px;
+        }
+        /* Skip to Main Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #00ffff;
+            color: #000;
+            padding: 8px;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to Main Content Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- Error Message Container -->
+    <div class="error-message" id="errorMessage"></div>
+    
+    <main id="main-content">
+        <h1>Flight Simulator 2024 Stream Deck Icons - 300+ Controls</h1>
+        <div class="instructions">
+            <h2>How to Save Icons:</h2>
+            <p>1. Select category from dropdown to filter buttons</p>
+            <p>2. Right-click each icon to save both states</p>
+            <p>3. Save with suggested names (normal and _pressed versions)</p>
+            <p>4. Set up in Stream Deck with both states</p>
+        </div>
+
+        <!-- Categories Overview -->
+        <div class="categories-overview">
+            <div class="kick-header">
+                <img src="https://kick.com/favicon.ico" alt="Kick Logo" class="kick-logo">
+                <a href="https://kick.com/playerunknown" target="_blank" class="kick-link">
+                    Follow on Kick.com/PlayerUnknown
+                </a>
+            </div>
+            <div class="category-grid">
+                <div class="category-item">Main Controls (7)</div>
+                <div class="category-item">Aircraft Systems (10)</div>
+                <div class="category-item">Engine Controls (15)</div>
+                <div class="category-item">Navigation (5)</div>
+                <div class="category-item">Radio & Comms (15)</div>
+                <div class="category-item">Camera Views (15)</div>
+                <div class="category-item">Autopilot (15)</div>
+                <div class="category-item">Lighting (15)</div>
+                <div class="category-item">Weather (5)</div>
+                <div class="category-item">Emergency (5)</div>
+                <div class="category-item">Flight Controls (10)</div>
+                <div class="category-item">Landing Gear (5)</div>
+                <div class="category-item">Flaps & Spoilers (6)</div>
+                <div class="category-item">Hydraulics (10)</div>
+                <div class="category-item">Electrical (10)</div>
+                <div class="category-item">Fuel System (10)</div>
+                <div class="category-item">Pressurization (10)</div>
+                <div class="category-item">Anti-Ice (10)</div>
+                <div class="category-item">Oxygen System (10)</div>
+                <div class="category-item">Air Conditioning (10)</div>
+                <div class="category-item">Ground Operations (10)</div>
+                <div class="category-item">Warning Systems (10)</div>
+                <div class="category-item">TCAS System (10)</div>
+                <div class="category-item">Weather Radar (10)</div>
+                <div class="category-item">Terrain System (10)</div>
+                <div class="category-item">Performance (10)</div>
+                <div class="category-item">Seat Controls (15)</div>
+                <div class="category-item">Drone Camera (10)</div>
+                <div class="category-item">Livery & Custom (10)</div>
+                <div class="category-item">ATC Presets (10)</div>
+                <div class="category-item">Weather Presets (10)</div>
+                <div class="category-item">Cockpit Environment (10)</div>
+                <div class="category-item">Flight Planning (10)</div>
+                <div class="category-item">Thrust Reversers (10)</div>
+                <div class="category-item">Brake System (10)</div>
+                <div class="category-item">System Tests (10)</div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search icons by name, label, or category...">
+            <i class="fas fa-search search-icon"></i>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-container">
+            <div class="stat-box">
+                <i class="fas fa-users"></i>
+                <span id="visitorCount">Loading...</span>
+                <label>Visitors</label>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-download"></i>
+                <span id="downloadCount">Loading...</span>
+                <label>Downloads</label>
+            </div>
+            <div class="stat-box">
+                <button id="likeButton" class="like-button">
+                    <i class="fas fa-heart"></i>
+                </button>
+                <span id="likeCount">0</span>
+                <label>Likes</label>
+            </div>
+            <div class="stat-box tip-box">
+                <a href="https://kickbot.com/tips/PlayerUnknown" target="_blank" class="tip-button">
+                    <i class="fas fa-gift"></i>
+                    <span>Support with Tip</span>
+                </a>
+                <label>Support Creator</label>
+                <a href="https://kick.com/playerunknown" target="_blank" class="channel-link">
+                    <img src="https://kick.com/favicon.ico" alt="Kick" class="channel-icon">
+                    PlayerUnknown
+                </a>
+            </div>
+        </div>
+
+        <select id="categorySelect">
+            <option value="all">Show All Categories</option>
+            <option value="air_cond">Air Conditioning</option>
+            <option value="aircraft">Aircraft Systems</option>
+            <option value="anti_ice">Anti-Ice</option>
+            <option value="atc">ATC Controls</option>
+            <option value="autopilot">Autopilot</option>
+            <option value="brakes">Brake System</option>
+            <option value="camera">Camera Views</option>
+            <option value="cockpit">Cockpit Environment</option>
+            <option value="display">Display Controls</option>
+            <option value="drone">Drone Camera</option>
+            <option value="electrical">Electrical</option>
+            <option value="emergency">Emergency</option>
+            <option value="engine">Engine Controls</option>
+            <option value="flight">Flight Controls</option>
+            <option value="flaps">Flaps & Spoilers</option>
+            <option value="fms">FMS Controls</option>
+            <option value="fuel">Fuel System</option>
+            <option value="gear">Landing Gear</option>
+            <option value="ground">Ground Operations</option>
+            <option value="hydraulics">Hydraulics</option>
+            <option value="lights">Lighting</option>
+            <option value="livery">Livery & Custom</option>
+            <option value="main">Main Controls</option>
+            <option value="nav">Navigation</option>
+            <option value="oxygen">Oxygen System</option>
+            <option value="performance">Performance</option>
+            <option value="planning">Flight Planning</option>
+            <option value="presets">ATC Presets</option>
+            <option value="pressurization">Pressurization</option>
+            <option value="radio">Radio & Comms</option>
+            <option value="reverser">Thrust Reversers</option>
+            <option value="seat">Seat Controls</option>
+            <option value="sim">Simulation</option>
+            <option value="systems">System Tests</option>
+            <option value="tcas">TCAS System</option>
+            <option value="terrain">Terrain System</option>
+            <option value="warning">Warning Systems</option>
+            <option value="weather">Weather</option>
+            <option value="weather_preset">Weather Presets</option>
+            <option value="weather_radar">Weather Radar</option>
+        </select>
+
+        <div class="grid" id="iconGrid"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="https://kick.com/playerunknown" target="_blank">
+                <img src="https://kick.com/favicon.ico" alt="PlayerUnknown Logo" class="footer-logo">
+            </a>
+            <p>© 2024 FS24 Stream Deck Icons. Version 1.0</p>
+            <p>Created by PlayerUnknown</p>
+            <p>For Microsoft Flight Simulator 2024</p>
+        </footer>
+    </main>
+
+    <script>
+        const icons = [
+            // Main Controls
+            { name: 'menu', text: 'FS24', label: 'Menu', category: 'main' },
+            { name: 'pause', text: 'PAUSE', label: 'Pause', category: 'main' },
+            { name: 'exit', text: 'EXIT', label: 'Exit', category: 'main' },
+            { name: 'save', text: 'SAVE', label: 'Save', category: 'main' },
+            { name: 'load', text: 'LOAD', label: 'Load', category: 'main' },
+            { name: 'windows', text: '⊞', label: 'Windows', category: 'main', color: '#00ff00', fontSize: '24px' },
+            { name: 'esc', text: 'ESC', label: 'Escape', category: 'main', color: '#ff0000' },
+
+            // Aircraft Systems - Basic
+            { name: 'master', text: 'MSTR', label: 'Master', category: 'aircraft', color: '#ff0000' },
+            { name: 'battery', text: 'BAT', label: 'Battery', category: 'aircraft', color: '#ff0000' },
+            { name: 'avionics', text: 'AVION', label: 'Avionics', category: 'aircraft' },
+            { name: 'fuel_pump', text: 'PUMP', label: 'Fuel Pump', category: 'aircraft' },
+            { name: 'apu', text: 'APU', label: 'APU', category: 'aircraft' },
+
+            // Engine Controls
+            { name: 'eng1_start', text: 'ENG1', label: 'Engine 1', category: 'engine' },
+            { name: 'eng2_start', text: 'ENG2', label: 'Engine 2', category: 'engine' },
+            { name: 'throttle_up', text: 'THR+', label: 'Throttle+', category: 'engine' },
+            { name: 'throttle_dn', text: 'THR-', label: 'Throttle-', category: 'engine' },
+            { name: 'mixture', text: 'MIX', label: 'Mixture', category: 'engine' },
+
+            // Navigation
+            { name: 'nav_map', text: 'MAP', label: 'Map', category: 'nav' },
+            { name: 'waypoint', text: 'WPT', label: 'Waypoint', category: 'nav' },
+            { name: 'vor1', text: 'VOR1', label: 'VOR 1', category: 'nav' },
+            { name: 'vor2', text: 'VOR2', label: 'VOR 2', category: 'nav' },
+            { name: 'ils', text: 'ILS', label: 'ILS', category: 'nav' },
+
+            // Radio & Communications
+            { name: 'com1', text: 'COM1', label: 'Comm 1', category: 'radio' },
+            { name: 'com2', text: 'COM2', label: 'Comm 2', category: 'radio' },
+            { name: 'atc', text: 'ATC', label: 'ATC', category: 'radio' },
+            { name: 'atis', text: 'ATIS', label: 'ATIS', category: 'radio' },
+            { name: 'squawk', text: 'SQWK', label: 'Squawk', category: 'radio' },
+
+            // Camera Views
+            { name: 'cockpit', text: 'COCK', label: 'Cockpit', category: 'camera' },
+            { name: 'external', text: 'EXT', label: 'External', category: 'camera' },
+            { name: 'tower', text: 'TWR', label: 'Tower', category: 'camera' },
+            { name: 'chase', text: 'CHASE', label: 'Chase', category: 'camera' },
+            { name: 'drone', text: 'DRONE', label: 'Drone', category: 'camera' },
+            { name: 'showcase', text: 'SHOW', label: 'Showcase', category: 'camera' },
+            { name: 'fixed', text: 'FIXED', label: 'Fixed', category: 'camera' },
+            { name: 'pilot', text: 'PILOT', label: 'Pilot Eye', category: 'camera' },
+            { name: 'copilot', text: 'COPLT', label: 'Copilot', category: 'camera' },
+            { name: 'wing', text: 'WING', label: 'Wing', category: 'camera' },
+            { name: 'tail', text: 'TAIL', label: 'Tail', category: 'camera' },
+            { name: 'ground', text: 'GRND', label: 'Ground', category: 'camera' },
+            { name: 'flyby', text: 'FLYBY', label: 'Fly By', category: 'camera' },
+            { name: 'circle', text: 'CIRC', label: 'Circle', category: 'camera' },
+            { name: 'free', text: 'FREE', label: 'Free Cam', category: 'camera' },
+
+            // Camera Controls
+            { name: 'cam_left', text: '←', label: 'Look Left', category: 'camera', fontSize: '24px' },
+            { name: 'cam_right', text: '→', label: 'Look Right', category: 'camera', fontSize: '24px' },
+            { name: 'cam_up', text: '↑', label: 'Look Up', category: 'camera', fontSize: '24px' },
+            { name: 'cam_down', text: '↓', label: 'Look Down', category: 'camera', fontSize: '24px' },
+            { name: 'zoom_in', text: 'Z+', label: 'Zoom In', category: 'camera' },
+            { name: 'zoom_out', text: 'Z-', label: 'Zoom Out', category: 'camera' },
+            { name: 'quick_left', text: '⟸', label: 'Quick Left', category: 'camera', fontSize: '24px' },
+            { name: 'quick_right', text: '⟹', label: 'Quick Right', category: 'camera', fontSize: '24px' },
+            { name: 'quick_back', text: '⟺', label: 'Quick Back', category: 'camera', fontSize: '24px' },
+            { name: 'pan_mode', text: 'PAN', label: 'Pan Mode', category: 'camera' },
+            { name: 'snap_view', text: 'SNAP', label: 'Snapshot', category: 'camera' },
+            { name: 'reset_view', text: 'RESET', label: 'Reset View', category: 'camera' },
+            { name: 'cycle_view', text: 'CYCLE', label: 'Cycle Views', category: 'camera' },
+            { name: 'lock_view', text: 'LOCK', label: 'Lock View', category: 'camera' },
+            { name: 'save_view', text: 'SAVE', label: 'Save View', category: 'camera' },
+
+            // Camera View Presets
+            { name: 'view_1', text: 'V1', label: 'View 1', category: 'camera' },
+            { name: 'view_2', text: 'V2', label: 'View 2', category: 'camera' },
+            { name: 'view_3', text: 'V3', label: 'View 3', category: 'camera' },
+            { name: 'view_4', text: 'V4', label: 'View 4', category: 'camera' },
+            { name: 'view_5', text: 'V5', label: 'View 5', category: 'camera' },
+
+            // Autopilot
+            { name: 'ap_master', text: 'AP', label: 'Master', category: 'autopilot' },
+            { name: 'heading', text: 'HDG', label: 'Heading', category: 'autopilot' },
+            { name: 'altitude', text: 'ALT', label: 'Altitude', category: 'autopilot' },
+            { name: 'vs', text: 'V/S', label: 'Vert Spd', category: 'autopilot' },
+            { name: 'nav_hold', text: 'NAV', label: 'Nav Hold', category: 'autopilot' },
+
+            // Lighting
+            { name: 'beacon', text: 'BCN', label: 'Beacon', category: 'lights' },
+            { name: 'strobe', text: 'STRB', label: 'Strobe', category: 'lights' },
+            { name: 'nav_lgt', text: 'NAV', label: 'Nav', category: 'lights' },
+            { name: 'taxi', text: 'TAXI', label: 'Taxi', category: 'lights' },
+            { name: 'landing', text: 'LDG', label: 'Landing', category: 'lights' },
+
+            // Weather
+            { name: 'wx_radar', text: 'WX', label: 'Weather', category: 'weather' },
+            { name: 'clouds', text: 'CLOUD', label: 'Clouds', category: 'weather' },
+            { name: 'wind', text: 'WIND', label: 'Wind', category: 'weather' },
+            { name: 'precip', text: 'RAIN', label: 'Precip', category: 'weather' },
+            { name: 'time', text: 'TIME', label: 'Time', category: 'weather' },
+
+            // Emergency
+            { name: 'emer', text: 'EMER', label: 'Emergency', category: 'emergency', color: '#ff0000' },
+            { name: 'fire', text: 'FIRE', label: 'Fire', category: 'emergency', color: '#ff0000' },
+            { name: 'gear_emr', text: 'GEAR', label: 'Gear Emr', category: 'emergency', color: '#ff0000' },
+            { name: 'fuel_dump', text: 'DUMP', label: 'Fuel Dump', category: 'emergency', color: '#ff0000' },
+            { name: 'eject', text: 'EJECT', label: 'Eject', category: 'emergency', color: '#ff0000' },
+
+            // Flight Controls
+            { name: 'pitch_up', text: 'P-UP', label: 'Pitch Up', category: 'flight' },
+            { name: 'pitch_dn', text: 'P-DN', label: 'Pitch Down', category: 'flight' },
+            { name: 'roll_l', text: 'R-L', label: 'Roll Left', category: 'flight' },
+            { name: 'roll_r', text: 'R-R', label: 'Roll Right', category: 'flight' },
+            { name: 'yaw_l', text: 'Y-L', label: 'Yaw Left', category: 'flight' },
+            { name: 'yaw_r', text: 'Y-R', label: 'Yaw Right', category: 'flight' },
+            { name: 'trim_u', text: 'TR-U', label: 'Trim Up', category: 'flight' },
+            { name: 'trim_d', text: 'TR-D', label: 'Trim Down', category: 'flight' },
+            { name: 'trim_l', text: 'TR-L', label: 'Trim Left', category: 'flight' },
+            { name: 'trim_r', text: 'TR-R', label: 'Trim Right', category: 'flight' },
+
+            // Landing Gear
+            { name: 'gear_up', text: 'GR-U', label: 'Gear Up', category: 'gear' },
+            { name: 'gear_dn', text: 'GR-D', label: 'Gear Down', category: 'gear' },
+            { name: 'brake_l', text: 'BRK-L', label: 'Left Brake', category: 'gear' },
+            { name: 'brake_r', text: 'BRK-R', label: 'Right Brake', category: 'gear' },
+            { name: 'park_brk', text: 'PARK', label: 'Park Brake', category: 'gear' },
+
+            // Flaps & Spoilers
+            { name: 'flap_up', text: 'FL-U', label: 'Flaps Up', category: 'flaps' },
+            { name: 'flap_1', text: 'FL-1', label: 'Flaps 1', category: 'flaps' },
+            { name: 'flap_2', text: 'FL-2', label: 'Flaps 2', category: 'flaps' },
+            { name: 'flap_3', text: 'FL-3', label: 'Flaps 3', category: 'flaps' },
+            { name: 'flap_full', text: 'FL-F', label: 'Full Flaps', category: 'flaps' },
+            { name: 'spoiler', text: 'SPLR', label: 'Spoilers', category: 'flaps' },
+
+            // Engine Management
+            { name: 'eng1_off', text: 'E1-OFF', label: 'Eng1 Off', category: 'engine' },
+            { name: 'eng2_off', text: 'E2-OFF', label: 'Eng2 Off', category: 'engine' },
+            { name: 'eng_sync', text: 'SYNC', label: 'Sync Eng', category: 'engine' },
+            { name: 'rev1_tog', text: 'REV1', label: 'Reverse 1', category: 'engine' },
+            { name: 'rev2_tog', text: 'REV2', label: 'Reverse 2', category: 'engine' },
+            { name: 'prop_up', text: 'PR-U', label: 'Prop Up', category: 'engine' },
+            { name: 'prop_dn', text: 'PR-D', label: 'Prop Down', category: 'engine' },
+            { name: 'mix_rich', text: 'MX-R', label: 'Mix Rich', category: 'engine' },
+            { name: 'mix_lean', text: 'MX-L', label: 'Mix Lean', category: 'engine' },
+            { name: 'carb_heat', text: 'CARB', label: 'Carb Heat', category: 'engine' },
+
+            // Autopilot Extended
+            { name: 'ap_disc', text: 'AP-D', label: 'AP Disc', category: 'autopilot' },
+            { name: 'hdg_sel', text: 'HDG-S', label: 'Hdg Sel', category: 'autopilot' },
+            { name: 'alt_sel', text: 'ALT-S', label: 'Alt Sel', category: 'autopilot' },
+            { name: 'vs_sel', text: 'VS-S', label: 'VS Sel', category: 'autopilot' },
+            { name: 'spd_sel', text: 'SPD-S', label: 'Spd Sel', category: 'autopilot' },
+            { name: 'app_hold', text: 'APP', label: 'Approach', category: 'autopilot' },
+            { name: 'bc_hold', text: 'BC', label: 'Back Crse', category: 'autopilot' },
+            { name: 'flc_hold', text: 'FLC', label: 'FL Change', category: 'autopilot' },
+            { name: 'alt_hold', text: 'ALT-H', label: 'Alt Hold', category: 'autopilot' },
+            { name: 'vnav', text: 'VNAV', label: 'Vert Nav', category: 'autopilot' },
+
+            // Radio Navigation
+            { name: 'vor1_inc', text: 'V1+', label: 'VOR1 +', category: 'radio' },
+            { name: 'vor1_dec', text: 'V1-', label: 'VOR1 -', category: 'radio' },
+            { name: 'vor2_inc', text: 'V2+', label: 'VOR2 +', category: 'radio' },
+            { name: 'vor2_dec', text: 'V2-', label: 'VOR2 -', category: 'radio' },
+            { name: 'adf_inc', text: 'ADF+', label: 'ADF +', category: 'radio' },
+            { name: 'adf_dec', text: 'ADF-', label: 'ADF -', category: 'radio' },
+            { name: 'dme_tog', text: 'DME', label: 'DME', category: 'radio' },
+            { name: 'obs1_l', text: 'OBS1L', label: 'OBS1 L', category: 'radio' },
+            { name: 'obs1_r', text: 'OBS1R', label: 'OBS1 R', category: 'radio' },
+            { name: 'obs2_l', text: 'OBS2L', label: 'OBS2 L', category: 'radio' },
+            { name: 'obs2_r', text: 'OBS2R', label: 'OBS2 R', category: 'radio' },
+
+            // Camera Views Extended
+            { name: 'cam_left', text: 'C-L', label: 'Look L', category: 'camera' },
+            { name: 'cam_right', text: 'C-R', label: 'Look R', category: 'camera' },
+            { name: 'cam_up', text: 'C-U', label: 'Look Up', category: 'camera' },
+            { name: 'cam_down', text: 'C-D', label: 'Look Down', category: 'camera' },
+            { name: 'zoom_in', text: 'Z-IN', label: 'Zoom In', category: 'camera' },
+            { name: 'zoom_out', text: 'Z-OUT', label: 'Zoom Out', category: 'camera' },
+            { name: 'quick_l', text: 'Q-L', label: 'Quick L', category: 'camera' },
+            { name: 'quick_r', text: 'Q-R', label: 'Quick R', category: 'camera' },
+            { name: 'quick_b', text: 'Q-B', label: 'Quick B', category: 'camera' },
+            { name: 'pan_mode', text: 'PAN', label: 'Pan Mode', category: 'camera' },
+
+            // Aircraft Systems Extended
+            { name: 'anti_ice', text: 'A-ICE', label: 'Anti Ice', category: 'aircraft' },
+            { name: 'pitot_heat', text: 'PITOT', label: 'Pitot Heat', category: 'aircraft' },
+            { name: 'window_heat', text: 'WHTC', label: 'Window Heat', category: 'aircraft' },
+            { name: 'prop_sync', text: 'PSYNC', label: 'Prop Sync', category: 'aircraft' },
+            { name: 'fuel_xfer', text: 'XFER', label: 'Fuel Xfer', category: 'aircraft' },
+            { name: 'alt_static', text: 'STAT', label: 'Alt Static', category: 'aircraft' },
+            { name: 'door_tog', text: 'DOOR', label: 'Door', category: 'aircraft' },
+            { name: 'seat_belt', text: 'BELT', label: 'Seat Belt', category: 'aircraft' },
+            { name: 'no_smoke', text: 'SMOKE', label: 'No Smoke', category: 'aircraft' },
+            { name: 'cabin_air', text: 'CAIR', label: 'Cabin Air', category: 'aircraft' },
+
+            // Lights Extended
+            { name: 'panel_brt', text: 'PNL+', label: 'Panel +', category: 'lights' },
+            { name: 'panel_dim', text: 'PNL-', label: 'Panel -', category: 'lights' },
+            { name: 'dome_on', text: 'DOME', label: 'Dome', category: 'lights' },
+            { name: 'logo_lgt', text: 'LOGO', label: 'Logo', category: 'lights' },
+            { name: 'wing_lgt', text: 'WING', label: 'Wing', category: 'lights' },
+            { name: 'taxi_l', text: 'TAX-L', label: 'Taxi L', category: 'lights' },
+            { name: 'taxi_r', text: 'TAX-R', label: 'Taxi R', category: 'lights' },
+            { name: 'land_l', text: 'LND-L', label: 'Land L', category: 'lights' },
+            { name: 'land_r', text: 'LND-R', label: 'Land R', category: 'lights' },
+            { name: 'recog_lgt', text: 'RECG', label: 'Recog', category: 'lights' },
+
+            // ATC & Communications
+            { name: 'atc_1', text: 'ATC-1', label: 'ATC 1', category: 'atc' },
+            { name: 'atc_2', text: 'ATC-2', label: 'ATC 2', category: 'atc' },
+            { name: 'atc_3', text: 'ATC-3', label: 'ATC 3', category: 'atc' },
+            { name: 'atc_4', text: 'ATC-4', label: 'ATC 4', category: 'atc' },
+            { name: 'atc_5', text: 'ATC-5', label: 'ATC 5', category: 'atc' },
+            { name: 'atc_6', text: 'ATC-6', label: 'ATC 6', category: 'atc' },
+            { name: 'atc_7', text: 'ATC-7', label: 'ATC 7', category: 'atc' },
+            { name: 'atc_8', text: 'ATC-8', label: 'ATC 8', category: 'atc' },
+            { name: 'atc_9', text: 'ATC-9', label: 'ATC 9', category: 'atc' },
+            { name: 'atc_0', text: 'ATC-0', label: 'ATC 0', category: 'atc' },
+
+            // Display Controls
+            { name: 'pfd_1', text: 'PFD-1', label: 'PFD 1', category: 'display' },
+            { name: 'pfd_2', text: 'PFD-2', label: 'PFD 2', category: 'display' },
+            { name: 'mfd_1', text: 'MFD-1', label: 'MFD 1', category: 'display' },
+            { name: 'mfd_2', text: 'MFD-2', label: 'MFD 2', category: 'display' },
+            { name: 'eicas_1', text: 'EIC-1', label: 'EICAS 1', category: 'display' },
+            { name: 'eicas_2', text: 'EIC-2', label: 'EICAS 2', category: 'display' },
+            { name: 'fms_1', text: 'FMS-1', label: 'FMS 1', category: 'display' },
+            { name: 'fms_2', text: 'FMS-2', label: 'FMS 2', category: 'display' },
+            { name: 'tcas', text: 'TCAS', label: 'TCAS', category: 'display' },
+            { name: 'radar', text: 'RADAR', label: 'Radar', category: 'display' },
+
+            // Simulation Controls
+            { name: 'sim_rate', text: 'RATE', label: 'Sim Rate', category: 'sim' },
+            { name: 'pause', text: 'PAUSE', label: 'Pause', category: 'sim' },
+            { name: 'slew', text: 'SLEW', label: 'Slew', category: 'sim' },
+            { name: 'replay', text: 'RPLY', label: 'Replay', category: 'sim' },
+            { name: 'map_tog', text: 'MAP', label: 'Map', category: 'sim' },
+            { name: 'checklist', text: 'CHKL', label: 'Checklist', category: 'sim' },
+            { name: 'atc_win', text: 'ATC-W', label: 'ATC Win', category: 'sim' },
+            { name: 'fuel_win', text: 'FUEL-W', label: 'Fuel Win', category: 'sim' },
+            { name: 'radio_win', text: 'RAD-W', label: 'Radio Win', category: 'sim' },
+            { name: 'gps_win', text: 'GPS-W', label: 'GPS Win', category: 'sim' },
+
+            // FMS Controls
+            { name: 'fms_1l', text: 'FMS1L', label: 'Key 1L', category: 'fms' },
+            { name: 'fms_2l', text: 'FMS2L', label: 'Key 2L', category: 'fms' },
+            { name: 'fms_3l', text: 'FMS3L', label: 'Key 3L', category: 'fms' },
+            { name: 'fms_4l', text: 'FMS4L', label: 'Key 4L', category: 'fms' },
+            { name: 'fms_5l', text: 'FMS5L', label: 'Key 5L', category: 'fms' },
+            { name: 'fms_1r', text: 'FMS1R', label: 'Key 1R', category: 'fms' },
+            { name: 'fms_2r', text: 'FMS2R', label: 'Key 2R', category: 'fms' },
+            { name: 'fms_3r', text: 'FMS3R', label: 'Key 3R', category: 'fms' },
+            { name: 'fms_4r', text: 'FMS4R', label: 'Key 4R', category: 'fms' },
+            { name: 'fms_5r', text: 'FMS5R', label: 'Key 5R', category: 'fms' },
+            { name: 'fms_prev', text: 'PREV', label: 'Previous', category: 'fms' },
+            { name: 'fms_next', text: 'NEXT', label: 'Next', category: 'fms' },
+            { name: 'fms_exec', text: 'EXEC', label: 'Execute', category: 'fms' },
+            { name: 'fms_dir', text: 'DIR', label: 'Direct', category: 'fms' },
+            { name: 'fms_leg', text: 'LEG', label: 'Legs', category: 'fms' },
+
+            // Hydraulics
+            { name: 'hyd_1', text: 'HYD-1', label: 'System 1', category: 'hydraulics' },
+            { name: 'hyd_2', text: 'HYD-2', label: 'System 2', category: 'hydraulics' },
+            { name: 'hyd_3', text: 'HYD-3', label: 'System 3', category: 'hydraulics' },
+            { name: 'hyd_pump1', text: 'PMP-1', label: 'Pump 1', category: 'hydraulics' },
+            { name: 'hyd_pump2', text: 'PMP-2', label: 'Pump 2', category: 'hydraulics' },
+            { name: 'hyd_pump3', text: 'PMP-3', label: 'Pump 3', category: 'hydraulics' },
+            { name: 'hyd_qty1', text: 'QTY-1', label: 'Quantity 1', category: 'hydraulics' },
+            { name: 'hyd_qty2', text: 'QTY-2', label: 'Quantity 2', category: 'hydraulics' },
+            { name: 'hyd_qty3', text: 'QTY-3', label: 'Quantity 3', category: 'hydraulics' },
+            { name: 'hyd_press', text: 'PRESS', label: 'Pressure', category: 'hydraulics' },
+
+            // Electrical Systems
+            { name: 'elec_bat1', text: 'BAT-1', label: 'Battery 1', category: 'electrical' },
+            { name: 'elec_bat2', text: 'BAT-2', label: 'Battery 2', category: 'electrical' },
+            { name: 'elec_gen1', text: 'GEN-1', label: 'Gen 1', category: 'electrical' },
+            { name: 'elec_gen2', text: 'GEN-2', label: 'Gen 2', category: 'electrical' },
+            { name: 'elec_apu', text: 'APU-G', label: 'APU Gen', category: 'electrical' },
+            { name: 'elec_bus1', text: 'BUS-1', label: 'Bus 1', category: 'electrical' },
+            { name: 'elec_bus2', text: 'BUS-2', label: 'Bus 2', category: 'electrical' },
+            { name: 'elec_inv1', text: 'INV-1', label: 'Inverter 1', category: 'electrical' },
+            { name: 'elec_inv2', text: 'INV-2', label: 'Inverter 2', category: 'electrical' },
+            { name: 'elec_gnd', text: 'GND-P', label: 'Ground Pwr', category: 'electrical' },
+
+            // Fuel System
+            { name: 'fuel_l', text: 'FUEL-L', label: 'Left Tank', category: 'fuel' },
+            { name: 'fuel_c', text: 'FUEL-C', label: 'Center Tank', category: 'fuel' },
+            { name: 'fuel_r', text: 'FUEL-R', label: 'Right Tank', category: 'fuel' },
+            { name: 'fuel_xl', text: 'XFER-L', label: 'Transfer L', category: 'fuel' },
+            { name: 'fuel_xr', text: 'XFER-R', label: 'Transfer R', category: 'fuel' },
+            { name: 'fuel_bal', text: 'BAL', label: 'Balance', category: 'fuel' },
+            { name: 'fuel_dump', text: 'DUMP', label: 'Fuel Dump', category: 'fuel' },
+            { name: 'fuel_xfeed', text: 'XFEED', label: 'Crossfeed', category: 'fuel' },
+            { name: 'fuel_heat', text: 'HEAT', label: 'Fuel Heat', category: 'fuel' },
+            { name: 'fuel_pump', text: 'PUMP', label: 'Fuel Pump', category: 'fuel' },
+
+            // Pressurization
+            { name: 'press_mode', text: 'MODE', label: 'Mode', category: 'pressurization' },
+            { name: 'press_auto', text: 'AUTO', label: 'Auto', category: 'pressurization' },
+            { name: 'press_man', text: 'MAN', label: 'Manual', category: 'pressurization' },
+            { name: 'press_alt', text: 'ALT', label: 'Altitude', category: 'pressurization' },
+            { name: 'press_vs', text: 'VS', label: 'Vert Speed', category: 'pressurization' },
+            { name: 'press_dump', text: 'DUMP', label: 'Dump', category: 'pressurization' },
+            { name: 'press_out', text: 'OUTF', label: 'Outflow', category: 'pressurization' },
+            { name: 'press_pack1', text: 'PCK-1', label: 'Pack 1', category: 'pressurization' },
+            { name: 'press_pack2', text: 'PCK-2', label: 'Pack 2', category: 'pressurization' },
+            { name: 'press_temp', text: 'TEMP', label: 'Temperature', category: 'pressurization' },
+
+            // Anti-Ice
+            { name: 'ice_wing', text: 'WING', label: 'Wing', category: 'anti_ice' },
+            { name: 'ice_eng1', text: 'ENG-1', label: 'Engine 1', category: 'anti_ice' },
+            { name: 'ice_eng2', text: 'ENG-2', label: 'Engine 2', category: 'anti_ice' },
+            { name: 'ice_tail', text: 'TAIL', label: 'Tail', category: 'anti_ice' },
+            { name: 'ice_pitot1', text: 'PIT-1', label: 'Pitot 1', category: 'anti_ice' },
+            { name: 'ice_pitot2', text: 'PIT-2', label: 'Pitot 2', category: 'anti_ice' },
+            { name: 'ice_window', text: 'WIN', label: 'Window', category: 'anti_ice' },
+            { name: 'ice_probe', text: 'PROB', label: 'Probe', category: 'anti_ice' },
+            { name: 'ice_aoa', text: 'AOA', label: 'AOA', category: 'anti_ice' },
+            { name: 'ice_stat', text: 'STAT', label: 'Static Port', category: 'anti_ice' },
+
+            // Oxygen System
+            { name: 'oxy_crew', text: 'CREW', label: 'Crew Oxy', category: 'oxygen' },
+            { name: 'oxy_pax', text: 'PAX', label: 'Pax Oxy', category: 'oxygen' },
+            { name: 'oxy_test', text: 'TEST', label: 'Test', category: 'oxygen' },
+            { name: 'oxy_reset', text: 'RESET', label: 'Reset', category: 'oxygen' },
+            { name: 'oxy_emer', text: 'EMER', label: 'Emergency', category: 'oxygen' },
+            { name: 'oxy_mask', text: 'MASK', label: 'Masks', category: 'oxygen' },
+            { name: 'oxy_press', text: 'PRESS', label: 'Pressure', category: 'oxygen' },
+            { name: 'oxy_flow', text: 'FLOW', label: 'Flow', category: 'oxygen' },
+            { name: 'oxy_qty', text: 'QTY', label: 'Quantity', category: 'oxygen' },
+            { name: 'oxy_xfer', text: 'XFER', label: 'Transfer', category: 'oxygen' },
+
+            // Air Conditioning
+            { name: 'ac_mode', text: 'MODE', label: 'Mode', category: 'air_cond' },
+            { name: 'ac_pack1', text: 'PCK-1', label: 'Pack 1', category: 'air_cond' },
+            { name: 'ac_pack2', text: 'PCK-2', label: 'Pack 2', category: 'air_cond' },
+            { name: 'ac_zone1', text: 'ZON-1', label: 'Zone 1', category: 'air_cond' },
+            { name: 'ac_zone2', text: 'ZON-2', label: 'Zone 2', category: 'air_cond' },
+            { name: 'ac_zone3', text: 'ZON-3', label: 'Zone 3', category: 'air_cond' },
+            { name: 'ac_trim', text: 'TRIM', label: 'Trim Air', category: 'air_cond' },
+            { name: 'ac_recirc', text: 'RECIRC', label: 'Recirc', category: 'air_cond' },
+            { name: 'ac_ram', text: 'RAM', label: 'Ram Air', category: 'air_cond' },
+            { name: 'ac_gasper', text: 'GASP', label: 'Gasper', category: 'air_cond' },
+
+            // Ground Operations
+            { name: 'gnd_tow', text: 'TOW', label: 'Towing', category: 'ground' },
+            { name: 'gnd_gpu', text: 'GPU', label: 'Ground Power', category: 'ground' },
+            { name: 'gnd_chock', text: 'CHOCK', label: 'Chocks', category: 'ground' },
+            { name: 'gnd_door_l', text: 'DOOR-L', label: 'Left Door', category: 'ground' },
+            { name: 'gnd_door_r', text: 'DOOR-R', label: 'Right Door', category: 'ground' },
+            { name: 'gnd_cargo_f', text: 'CARG-F', label: 'Fwd Cargo', category: 'ground' },
+            { name: 'gnd_cargo_a', text: 'CARG-A', label: 'Aft Cargo', category: 'ground' },
+            { name: 'gnd_stairs', text: 'STAIR', label: 'Stairs', category: 'ground' },
+            { name: 'gnd_jetway', text: 'JWAY', label: 'Jetway', category: 'ground' },
+            { name: 'gnd_fuel', text: 'FUEL', label: 'Refuel', category: 'ground' },
+
+            // Warning Systems
+            { name: 'warn_master', text: 'MSTR', label: 'Master Warn', category: 'warning' },
+            { name: 'warn_fire', text: 'FIRE', label: 'Fire Warn', category: 'warning' },
+            { name: 'warn_eng', text: 'ENG', label: 'Engine Warn', category: 'warning' },
+            { name: 'warn_apu', text: 'APU', label: 'APU Warn', category: 'warning' },
+            { name: 'warn_hyd', text: 'HYD', label: 'Hydraulic', category: 'warning' },
+            { name: 'warn_fuel', text: 'FUEL', label: 'Fuel Warn', category: 'warning' },
+            { name: 'warn_elec', text: 'ELEC', label: 'Electrical', category: 'warning' },
+            { name: 'warn_gear', text: 'GEAR', label: 'Gear Warn', category: 'warning' },
+            { name: 'warn_door', text: 'DOOR', label: 'Door Warn', category: 'warning' },
+            { name: 'warn_ice', text: 'ICE', label: 'Ice Warn', category: 'warning' },
+
+            // TCAS System
+            { name: 'tcas_mode', text: 'MODE', label: 'TCAS Mode', category: 'tcas' },
+            { name: 'tcas_ta', text: 'TA', label: 'TA Only', category: 'tcas' },
+            { name: 'tcas_ra', text: 'RA', label: 'TA/RA', category: 'tcas' },
+            { name: 'tcas_test', text: 'TEST', label: 'Test', category: 'tcas' },
+            { name: 'tcas_alt', text: 'ALT', label: 'Alt Toggle', category: 'tcas' },
+            { name: 'tcas_up', text: 'UP', label: 'Range Up', category: 'tcas' },
+            { name: 'tcas_dn', text: 'DN', label: 'Range Down', category: 'tcas' },
+            { name: 'tcas_disp', text: 'DISP', label: 'Display', category: 'tcas' },
+            { name: 'tcas_clear', text: 'CLR', label: 'Clear', category: 'tcas' },
+            { name: 'tcas_ident', text: 'IDENT', label: 'Ident', category: 'tcas' },
+
+            // Weather Radar
+            { name: 'wx_mode', text: 'MODE', label: 'WX Mode', category: 'weather_radar' },
+            { name: 'wx_gain', text: 'GAIN', label: 'Gain', category: 'weather_radar' },
+            { name: 'wx_tilt', text: 'TILT', label: 'Tilt', category: 'weather_radar' },
+            { name: 'wx_auto', text: 'AUTO', label: 'Auto', category: 'weather_radar' },
+            { name: 'wx_test', text: 'TEST', label: 'Test', category: 'weather_radar' },
+            { name: 'wx_turb', text: 'TURB', label: 'Turbulence', category: 'weather_radar' },
+            { name: 'wx_map', text: 'MAP', label: 'Map', category: 'weather_radar' },
+            { name: 'wx_stab', text: 'STAB', label: 'Stabilize', category: 'weather_radar' },
+            { name: 'wx_range', text: 'RNG', label: 'Range', category: 'weather_radar' },
+            { name: 'wx_alert', text: 'ALRT', label: 'Alert', category: 'weather_radar' },
+
+            // Terrain System
+            { name: 'terr_mode', text: 'MODE', label: 'TERR Mode', category: 'terrain' },
+            { name: 'terr_disp', text: 'DISP', label: 'Display', category: 'terrain' },
+            { name: 'terr_range', text: 'RNG', label: 'Range', category: 'terrain' },
+            { name: 'terr_min', text: 'MIN', label: 'Minimums', category: 'terrain' },
+            { name: 'terr_test', text: 'TEST', label: 'Test', category: 'terrain' },
+            { name: 'terr_peak', text: 'PEAK', label: 'Peak Mode', category: 'terrain' },
+            { name: 'terr_obst', text: 'OBST', label: 'Obstacles', category: 'terrain' },
+            { name: 'terr_dens', text: 'DENS', label: 'Density', category: 'terrain' },
+            { name: 'terr_alert', text: 'ALRT', label: 'Alert', category: 'terrain' },
+            { name: 'terr_clear', text: 'CLR', label: 'Clear', category: 'terrain' },
+
+            // Performance
+            { name: 'perf_to', text: 'TO', label: 'Takeoff', category: 'performance' },
+            { name: 'perf_ldg', text: 'LDG', label: 'Landing', category: 'performance' },
+            { name: 'perf_cost', text: 'COST', label: 'Cost Index', category: 'performance' },
+            { name: 'perf_wind', text: 'WIND', label: 'Winds', category: 'performance' },
+            { name: 'perf_temp', text: 'TEMP', label: 'Temperature', category: 'performance' },
+            { name: 'perf_alt', text: 'ALT', label: 'Altitude', category: 'performance' },
+            { name: 'perf_fuel', text: 'FUEL', label: 'Fuel Plan', category: 'performance' },
+            { name: 'perf_time', text: 'TIME', label: 'Time Plan', category: 'performance' },
+            { name: 'perf_rsv', text: 'RSV', label: 'Reserves', category: 'performance' },
+            { name: 'perf_altn', text: 'ALTN', label: 'Alternate', category: 'performance' },
+
+            // Seat Controls
+            { name: 'seat_fwd', text: '↑', label: 'Seat Forward', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_aft', text: '↓', label: 'Seat Back', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_up', text: '↑', label: 'Seat Up', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_dn', text: '↓', label: 'Seat Down', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_tilt_f', text: '↗', label: 'Tilt Forward', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_tilt_b', text: '↙', label: 'Tilt Back', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_lumbar', text: '→', label: 'Lumbar', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_arm', text: '↕', label: 'Armrest', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_head', text: '↕', label: 'Headrest', category: 'seat', fontSize: '28px', color: '#ffffff' },
+            { name: 'seat_mem1', text: 'M1', label: 'Memory 1', category: 'seat', color: '#00ffff' },
+            { name: 'seat_mem2', text: 'M2', label: 'Memory 2', category: 'seat', color: '#00ffff' },
+            { name: 'seat_mem3', text: 'M3', label: 'Memory 3', category: 'seat', color: '#00ffff' },
+            { name: 'seat_massage', text: '◈', label: 'Massage', category: 'seat', fontSize: '24px', color: '#ffffff' },
+            { name: 'seat_heat', text: '▲', label: 'Heat', category: 'seat', fontSize: '24px', color: '#ff6666' },
+            { name: 'seat_cool', text: '▼', label: 'Cool', category: 'seat', fontSize: '24px', color: '#66ffff' },
+
+            // Drone Camera Controls
+            { name: 'drone_orbit', text: 'ORBIT', label: 'Orbit Mode', category: 'drone' },
+            { name: 'drone_focus', text: 'FOCUS', label: 'Focus Point', category: 'drone' },
+            { name: 'drone_spd_up', text: 'SPD+', label: 'Speed Up', category: 'drone' },
+            { name: 'drone_spd_dn', text: 'SPD-', label: 'Speed Down', category: 'drone' },
+            { name: 'drone_height', text: 'HEIGHT', label: 'Height Adj', category: 'drone' },
+            { name: 'drone_dist', text: 'DIST', label: 'Distance', category: 'drone' },
+            { name: 'drone_roll', text: 'ROLL', label: 'Roll Cam', category: 'drone' },
+            { name: 'drone_reset', text: 'RESET', label: 'Reset Pos', category: 'drone' },
+            { name: 'drone_smooth', text: 'SMTH', label: 'Smoothing', category: 'drone' },
+            { name: 'drone_lock', text: 'LOCK', label: 'Lock Target', category: 'drone' },
+
+            // Livery and Customization
+            { name: 'livery_next', text: 'LIV→', label: 'Next Livery', category: 'livery' },
+            { name: 'livery_prev', text: 'LIV←', label: 'Prev Livery', category: 'livery' },
+            { name: 'variant_next', text: 'VAR→', label: 'Next Variant', category: 'livery' },
+            { name: 'variant_prev', text: 'VAR←', label: 'Prev Variant', category: 'livery' },
+            { name: 'load_pax', text: 'PAX', label: 'Passengers', category: 'livery' },
+            { name: 'load_cargo', text: 'CARGO', label: 'Cargo Load', category: 'livery' },
+            { name: 'load_fuel', text: 'FUEL', label: 'Fuel Load', category: 'livery' },
+            { name: 'equip_save', text: 'SAVE', label: 'Save Config', category: 'livery' },
+            { name: 'equip_load', text: 'LOAD', label: 'Load Config', category: 'livery' },
+            { name: 'equip_reset', text: 'RESET', label: 'Reset All', category: 'livery' },
+
+            // ATC Presets
+            { name: 'atc_ready', text: 'RDY', label: 'Ready', category: 'presets' },
+            { name: 'atc_wilco', text: 'WILCO', label: 'Wilco', category: 'presets' },
+            { name: 'atc_unable', text: 'UNABLE', label: 'Unable', category: 'presets' },
+            { name: 'atc_repeat', text: 'SAY', label: 'Say Again', category: 'presets' },
+            { name: 'atc_mayday', text: 'MAYDAY', label: 'Mayday', category: 'presets', color: '#ff0000' },
+            { name: 'atc_pan', text: 'PAN', label: 'Pan Pan', category: 'presets', color: '#ffaa00' },
+            { name: 'atc_fuel', text: 'MIN FUEL', label: 'Min Fuel', category: 'presets', color: '#ffaa00' },
+            { name: 'atc_reroute', text: 'ROUTE', label: 'Reroute', category: 'presets' },
+            { name: 'atc_wx_dev', text: 'WX DEV', label: 'Weather Dev', category: 'presets' },
+            { name: 'atc_appr', text: 'APPR', label: 'Approach', category: 'presets' },
+
+            // Weather Presets
+            { name: 'wx_clear', text: 'CLEAR', label: 'Clear Sky', category: 'weather_preset' },
+            { name: 'wx_storm', text: 'STORM', label: 'Thunderstorm', category: 'weather_preset' },
+            { name: 'wx_snow', text: 'SNOW', label: 'Snow', category: 'weather_preset' },
+            { name: 'wx_fog', text: 'FOG', label: 'Fog', category: 'weather_preset' },
+            { name: 'wx_live', text: 'LIVE', label: 'Live Weather', category: 'weather_preset' },
+            { name: 'wx_dawn', text: 'DAWN', label: 'Dawn', category: 'weather_preset' },
+            { name: 'wx_dusk', text: 'DUSK', label: 'Dusk', category: 'weather_preset' },
+            { name: 'wx_night', text: 'NIGHT', label: 'Night', category: 'weather_preset' },
+            { name: 'wx_season', text: 'SEASON', label: 'Season', category: 'weather_preset' },
+            { name: 'wx_save', text: 'SAVE', label: 'Save Preset', category: 'weather_preset' },
+
+            // Cockpit Environment
+            { name: 'shade_l', text: 'SHADE L', label: 'Left Shade', category: 'cockpit' },
+            { name: 'shade_r', text: 'SHADE R', label: 'Right Shade', category: 'cockpit' },
+            { name: 'visor_l', text: 'VISOR L', label: 'Left Visor', category: 'cockpit' },
+            { name: 'visor_r', text: 'VISOR R', label: 'Right Visor', category: 'cockpit' },
+            { name: 'cab_light1', text: 'LIGHT 1', label: 'Cabin Zone 1', category: 'cockpit' },
+            { name: 'cab_light2', text: 'LIGHT 2', label: 'Cabin Zone 2', category: 'cockpit' },
+            { name: 'cab_light3', text: 'LIGHT 3', label: 'Cabin Zone 3', category: 'cockpit' },
+            { name: 'inst_brt', text: 'INST +', label: 'Inst Bright', category: 'cockpit' },
+            { name: 'inst_dim', text: 'INST -', label: 'Inst Dim', category: 'cockpit' },
+            { name: 'disp_cfg', text: 'DISP', label: 'Display Config', category: 'cockpit' },
+
+            // Flight Planning
+            { name: 'plan_new', text: 'NEW', label: 'New Plan', category: 'planning' },
+            { name: 'plan_load', text: 'LOAD', label: 'Load Plan', category: 'planning' },
+            { name: 'plan_save', text: 'SAVE', label: 'Save Plan', category: 'planning' },
+            { name: 'plan_alt', text: 'ALT', label: 'Alternate', category: 'planning' },
+            { name: 'plan_sid', text: 'SID', label: 'SID Select', category: 'planning' },
+            { name: 'plan_star', text: 'STAR', label: 'STAR Select', category: 'planning' },
+            { name: 'plan_app', text: 'APP', label: 'Approach', category: 'planning' },
+            { name: 'plan_route', text: 'ROUTE', label: 'Direct To', category: 'planning' },
+            { name: 'plan_perf', text: 'PERF', label: 'Performance', category: 'planning' },
+            { name: 'plan_wx', text: 'WX', label: 'Weather Brief', category: 'planning' },
+
+            // Thrust Reversers
+            { name: 'rev_arm', text: 'ARM', label: 'Arm Rev', category: 'reverser' },
+            { name: 'rev_disarm', text: 'DISARM', label: 'Disarm Rev', category: 'reverser' },
+            { name: 'rev1_dep', text: 'REV1 D', label: 'Deploy 1', category: 'reverser' },
+            { name: 'rev2_dep', text: 'REV2 D', label: 'Deploy 2', category: 'reverser' },
+            { name: 'rev1_stow', text: 'REV1 S', label: 'Stow 1', category: 'reverser' },
+            { name: 'rev2_stow', text: 'REV2 S', label: 'Stow 2', category: 'reverser' },
+            { name: 'rev_test', text: 'TEST', label: 'Test Rev', category: 'reverser' },
+            { name: 'rev_ind', text: 'IND', label: 'Indicators', category: 'reverser' },
+            { name: 'rev_lock', text: 'LOCK', label: 'Lock Out', category: 'reverser' },
+            { name: 'rev_reset', text: 'RESET', label: 'Reset Rev', category: 'reverser' },
+
+            // Brake System
+            { name: 'brake_l', text: 'BRK L', label: 'Left Brake', category: 'brakes' },
+            { name: 'brake_r', text: 'BRK R', label: 'Right Brake', category: 'brakes' },
+            { name: 'brake_park', text: 'PARK', label: 'Park Brake', category: 'brakes' },
+            { name: 'brake_temp', text: 'TEMP', label: 'Temperature', category: 'brakes' },
+            { name: 'brake_press', text: 'PRESS', label: 'Pressure', category: 'brakes' },
+            { name: 'brake_anti', text: 'ANTI', label: 'Anti-Skid', category: 'brakes' },
+            { name: 'brake_auto', text: 'AUTO', label: 'Auto Brake', category: 'brakes' },
+            { name: 'brake_fan', text: 'FAN', label: 'Brake Fan', category: 'brakes' },
+            { name: 'brake_wear', text: 'WEAR', label: 'Wear Ind', category: 'brakes' },
+            { name: 'brake_reset', text: 'RESET', label: 'Reset Brk', category: 'brakes' },
+
+            // System Tests
+            { name: 'test_fire', text: 'FIRE', label: 'Fire Test', category: 'systems', color: '#ff3333' },
+            { name: 'test_apu', text: 'APU', label: 'APU Test', category: 'systems' },
+            { name: 'test_eng', text: 'ENG', label: 'Engine Test', category: 'systems' },
+            { name: 'test_fuel', text: 'FUEL', label: 'Fuel Test', category: 'systems' },
+            { name: 'test_hyd', text: 'HYD', label: 'Hydraulic Test', category: 'systems' },
+            { name: 'test_elec', text: 'ELEC', label: 'Electric Test', category: 'systems' },
+            { name: 'test_pres', text: 'PRES', label: 'Press Test', category: 'systems' },
+            { name: 'test_gear', text: 'GEAR', label: 'Gear Test', category: 'systems' },
+            { name: 'test_ice', text: 'ICE', label: 'Ice Test', category: 'systems' },
+            { name: 'test_all', text: 'ALL', label: 'Test All', category: 'systems', color: '#ffaa00' }
+        ];
+
+        // Define renderIcons function first
+        function renderIcons(category = 'all', searchTerm = '') {
+            const grid = document.getElementById('iconGrid');
+            grid.innerHTML = '';
+            
+            let filteredIcons = icons;
+            
+            if (category !== 'all') {
+                filteredIcons = icons.filter(icon => icon.category === category);
+            }
+            
+            if (searchTerm) {
+                const searchLower = searchTerm.toLowerCase();
+                filteredIcons = filteredIcons.filter(icon => 
+                    icon.name.toLowerCase().includes(searchLower) ||
+                    icon.label.toLowerCase().includes(searchLower)
+                );
+            }
+            
+            if (filteredIcons.length === 0) {
+                grid.innerHTML = '<div class="no-results">No icons found</div>';
+                return;
+            }
+            
+            filteredIcons.forEach(icon => {
+                const buttonPair = document.createElement('div');
+                buttonPair.className = 'button-pair';
+                
+                // Normal state
+                const normalCanvas = document.createElement('canvas');
+                normalCanvas.width = 72;
+                normalCanvas.height = 72;
+                normalCanvas.title = `${icon.label} (Normal)`;
+                generateIcon(normalCanvas, icon, false);
+                
+                // Pressed state
+                const pressedCanvas = document.createElement('canvas');
+                pressedCanvas.width = 72;
+                pressedCanvas.height = 72;
+                pressedCanvas.title = `${icon.label} (Pressed)`;
+                generateIcon(pressedCanvas, icon, true);
+                
+                buttonPair.appendChild(normalCanvas);
+                buttonPair.appendChild(pressedCanvas);
+                
+                const stateLabel = document.createElement('div');
+                stateLabel.className = 'state-label';
+                stateLabel.textContent = icon.label;
+                buttonPair.appendChild(stateLabel);
+                
+                grid.appendChild(buttonPair);
+            });
+        }
+
+        // Add loading state management
+        function showLoading() {
+            document.getElementById('loadingOverlay').style.display = 'flex';
+        }
+        
+        function hideLoading() {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }
+        
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+
+        // Update renderIcons function with all enhancements
+        const originalRenderIcons = renderIcons;
+        renderIcons = function(category = 'all', searchTerm = '') {
+            showLoading();
+            try {
+                originalRenderIcons(category, searchTerm);
+                addDownloadTracking();
+            } catch (error) {
+                showError('Error rendering icons: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        };
+        
+        // Add keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                document.body.classList.add('keyboard-navigation');
+            }
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            hideLoading();
+            initializeTracking();
+            initializeLikes();
+            renderIcons('all'); // Initial render
+        });
+        
+        // Add error handling for icon generation
+        function generateIcon(canvas, icon, isPressed) {
+            try {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Background
+                ctx.fillStyle = isPressed ? '#0a0a0a' : '#111111';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // LED indicator
+                const ledColor = isPressed ? '#00ff00' : 
+                               icon.category === 'emergency' ? '#ff0000' : 
+                               icon.category === 'warning' ? '#ffaa00' : '#ff0000';
+                
+                ctx.beginPath();
+                ctx.arc(8, 8, 3, 0, Math.PI * 2);
+                ctx.fillStyle = ledColor;
+                ctx.fill();
+                ctx.shadowColor = ledColor;
+                ctx.shadowBlur = 5;
+                
+                // Text
+                ctx.font = 'bold 16px Arial';
+                ctx.fillStyle = isPressed ? '#00ff00' : '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(icon.text, canvas.width/2, canvas.height/2);
+                
+                // Label
+                ctx.font = '10px Arial';
+                ctx.fillStyle = isPressed ? '#00ff00' : '#99ffff';
+                ctx.fillText(icon.label, canvas.width/2, canvas.height - 8);
+                
+                // Add click handler for saving
+                canvas.onclick = () => {
+                    const link = document.createElement('a');
+                    link.download = `${icon.name}_${isPressed ? 'pressed' : 'normal'}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                };
+            } catch (error) {
+                console.error('Error generating icon:', error);
+                showError('Failed to generate icon: ' + icon.name);
+            }
+        }
+
+        // Add search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.trim();
+            renderIcons(categorySelect.value, searchTerm);
+        });
+
+        // Update category change handler to maintain search term
+        categorySelect.addEventListener('change', (e) => {
+            renderIcons(e.target.value, searchInput.value.trim());
+        });
+
+        // Visitor and Download Tracking
+        function initializeTracking() {
+            // Check if this is a new visitor
+            if (!localStorage.getItem('hasVisited')) {
+                // Get current count from localStorage or start at 0
+                let visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
+                visitorCount++;
+                
+                // Store the new count and mark this visitor
+                localStorage.setItem('visitorCount', visitorCount.toString());
+                localStorage.setItem('hasVisited', 'true');
+                
+                // Update display
+                document.getElementById('visitorCount').textContent = visitorCount;
+            } else {
+                // Just display current count for returning visitors
+                const visitorCount = localStorage.getItem('visitorCount') || '0';
+                document.getElementById('visitorCount').textContent = visitorCount;
+            }
+
+            // Display download count
+            const downloadCount = localStorage.getItem('downloadCount') || '0';
+            document.getElementById('downloadCount').textContent = downloadCount;
+        }
+
+        // Track downloads when icons are right-clicked
+        function trackDownload() {
+            let downloadCount = parseInt(localStorage.getItem('downloadCount') || '0');
+            downloadCount++;
+            localStorage.setItem('downloadCount', downloadCount.toString());
+            document.getElementById('downloadCount').textContent = downloadCount;
+        }
+
+        // Add download tracking to icon canvases
+        function addDownloadTracking() {
+            const canvases = document.querySelectorAll('canvas');
+            canvases.forEach(canvas => {
+                canvas.addEventListener('contextmenu', () => {
+                    trackDownload();
+                });
+            });
+        }
+
+        // Initialize tracking on page load
+        initializeTracking();
+
+        // Add to existing script
+        function initializeLikes() {
+            const likeButton = document.getElementById('likeButton');
+            const likeCount = document.getElementById('likeCount');
+            
+            // Load like state and count
+            let likes = parseInt(localStorage.getItem('likeCount') || '0');
+            const hasLiked = localStorage.getItem('hasLiked') === 'true';
+            
+            // Update initial state
+            likeCount.textContent = likes;
+            if (hasLiked) {
+                likeButton.classList.add('liked');
+            }
+            
+            // Add click handler
+            likeButton.addEventListener('click', () => {
+                if (!hasLiked) {
+                    likes++;
+                    localStorage.setItem('likeCount', likes.toString());
+                    localStorage.setItem('hasLiked', 'true');
+                    likeButton.classList.add('liked');
+                    likeCount.textContent = likes;
+                    
+                    // Add animation
+                    likeButton.style.animation = 'none';
+                    likeButton.offsetHeight; // Trigger reflow
+                    likeButton.style.animation = null;
+                }
+            });
+        }
+
+        // Initialize likes after DOM content is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeLikes();
+        });
+
+        // Add category mapping
+        const categoryMapping = {
+            'Main Controls (7)': 'main',
+            'Aircraft Systems (10)': 'aircraft',
+            'Engine Controls (15)': 'engine',
+            'Navigation (5)': 'nav',
+            'Radio & Comms (15)': 'radio',
+            'Camera Views (15)': 'camera',
+            'Autopilot (15)': 'autopilot',
+            'Lighting (15)': 'lights',
+            'Weather (5)': 'weather',
+            'Emergency (5)': 'emergency',
+            'Flight Controls (10)': 'flight',
+            'Landing Gear (5)': 'gear',
+            'Flaps & Spoilers (6)': 'flaps',
+            'Hydraulics (10)': 'hydraulics',
+            'Electrical (10)': 'electrical',
+            'Fuel System (10)': 'fuel',
+            'Pressurization (10)': 'pressurization',
+            'Anti-Ice (10)': 'anti_ice',
+            'Oxygen System (10)': 'oxygen',
+            'Air Conditioning (10)': 'air_cond',
+            'Ground Operations (10)': 'ground',
+            'Warning Systems (10)': 'warning',
+            'TCAS System (10)': 'tcas',
+            'Weather Radar (10)': 'weather_radar',
+            'Terrain System (10)': 'terrain',
+            'Performance (10)': 'performance',
+            'Seat Controls (15)': 'seat',
+            'Drone Camera (10)': 'drone',
+            'Livery & Custom (10)': 'livery',
+            'ATC Presets (10)': 'presets',
+            'Weather Presets (10)': 'weather_preset',
+            'Cockpit Environment (10)': 'cockpit',
+            'Flight Planning (10)': 'planning',
+            'Thrust Reversers (10)': 'reverser',
+            'Brake System (10)': 'brakes',
+            'System Tests (10)': 'systems'
+        };
+
+        // Add click handler for category items
+        document.addEventListener('DOMContentLoaded', () => {
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const categoryValue = categoryMapping[item.textContent];
+                    if (categoryValue) {
+                        // Update dropdown selection
+                        const categorySelect = document.getElementById('categorySelect');
+                        categorySelect.value = categoryValue;
+                        
+                        // Scroll to the dropdown
+                        categorySelect.scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Trigger the change event to update the display
+                        categorySelect.dispatchEvent(new Event('change'));
+                        
+                        // Add highlight effect
+                        categorySelect.style.animation = 'none';
+                        categorySelect.offsetHeight; // Trigger reflow
+                        categorySelect.style.animation = 'highlight 1s ease';
+                    }
+                });
+            });
+        });
+
+        // Add highlight animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes highlight {
+                0% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); }
+                50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
+                100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html> 
