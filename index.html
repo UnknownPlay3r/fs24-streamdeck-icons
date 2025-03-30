@@ -265,6 +265,8 @@
             padding: 0;
             margin: 0;
             outline: none;
+            display: block;
+            margin: 0 auto;
         }
         .like-button:hover {
             color: #ff4444;
@@ -288,6 +290,7 @@
             font-weight: bold;
             color: #00ffff;
             margin-top: 5px;
+            text-align: center;
         }
         .tip-box {
             display: flex;
@@ -464,6 +467,14 @@
         .skip-link:focus {
             top: 0;
         }
+        /* Add this to your existing styles */
+        .stats {
+            color: #00ff00;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -629,6 +640,8 @@
             <p>Created by PlayerUnknown</p>
             <p>For Microsoft Flight Simulator 2024</p>
         </footer>
+        <!-- Add this in the footer section -->
+        <div class="stats" id="stats">👥 0 | ⬇️ 0</div>
     </main>
 
     <script>
@@ -1246,13 +1259,35 @@
             }, 5000);
         }
 
+        // Add download tracking to icon canvases
+        function addDownloadTracking() {
+            const canvases = document.querySelectorAll('canvas');
+            canvases.forEach(canvas => {
+                canvas.onclick = () => {
+                    trackDownload();
+                    const link = document.createElement('a');
+                    link.download = `${canvas.title.split(' (')[0]}_${canvas.title.includes('Pressed') ? 'pressed' : 'normal'}.png`;
+                    link.href = canvas.toDataURL('image/png');
+                    link.click();
+                };
+            });
+        }
+
+        // Track download
+        function trackDownload() {
+            stats.downloads++;
+            saveStats();
+            updateStatsDisplay();
+            document.getElementById('downloadCount').textContent = stats.downloads;
+        }
+
         // Update renderIcons function with all enhancements
         const originalRenderIcons = renderIcons;
         renderIcons = function(category = 'all', searchTerm = '') {
             showLoading();
             try {
                 originalRenderIcons(category, searchTerm);
-                addDownloadTracking();
+                addDownloadTracking(); // Add download tracking after rendering
             } catch (error) {
                 showError('Error rendering icons: ' + error.message);
             } finally {
@@ -1270,12 +1305,12 @@
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
             hideLoading();
-            initializeTracking();
-            initializeLikes();
+            loadStats(); // Load stats first
+            initializeLikes(); // Initialize likes once
             renderIcons('all'); // Initial render
         });
         
-        // Add error handling for icon generation
+        // Remove the old click handler from generateIcon function
         function generateIcon(canvas, icon, isPressed) {
             try {
                 const ctx = canvas.getContext('2d');
@@ -1308,14 +1343,6 @@
                 ctx.font = '10px Arial';
                 ctx.fillStyle = isPressed ? '#00ff00' : '#99ffff';
                 ctx.fillText(icon.label, canvas.width/2, canvas.height - 8);
-                
-                // Add click handler for saving
-                canvas.onclick = () => {
-                    const link = document.createElement('a');
-                    link.download = `${icon.name}_${isPressed ? 'pressed' : 'normal'}.png`;
-                    link.href = canvas.toDataURL('image/png');
-                    link.click();
-                };
             } catch (error) {
                 console.error('Error generating icon:', error);
                 showError('Failed to generate icon: ' + icon.name);
@@ -1326,68 +1353,76 @@
         const searchInput = document.getElementById('searchInput');
         searchInput.addEventListener('input', (e) => {
             const searchTerm = e.target.value.trim();
-            renderIcons(categorySelect.value, searchTerm);
+            const category = document.getElementById('categorySelect').value;
+            renderIcons(category, searchTerm);
         });
 
         // Update category change handler to maintain search term
+        const categorySelect = document.getElementById('categorySelect');
         categorySelect.addEventListener('change', (e) => {
-            renderIcons(e.target.value, searchInput.value.trim());
+            const searchTerm = searchInput.value.trim();
+            renderIcons(e.target.value, searchTerm);
         });
 
-        // Visitor and Download Tracking
-        function initializeTracking() {
-            // Check if this is a new visitor
-            if (!localStorage.getItem('hasVisited')) {
-                // Get current count from localStorage or start at 0
-                let visitorCount = parseInt(localStorage.getItem('visitorCount') || '0');
-                visitorCount++;
-                
-                // Store the new count and mark this visitor
-                localStorage.setItem('visitorCount', visitorCount.toString());
-                localStorage.setItem('hasVisited', 'true');
-                
-                // Update display
-                document.getElementById('visitorCount').textContent = visitorCount;
-            } else {
-                // Just display current count for returning visitors
-                const visitorCount = localStorage.getItem('visitorCount') || '0';
-                document.getElementById('visitorCount').textContent = visitorCount;
+        // Visitor and download tracking
+        let stats = {
+            visitors: 0,
+            downloads: 0
+        };
+
+        // Load stats from localStorage
+        function loadStats() {
+            try {
+                const savedStats = localStorage.getItem('fs24_stats');
+                if (savedStats) {
+                    stats = JSON.parse(savedStats);
+                }
+                // Update both the stats display and the visitor/download count displays
+                updateStatsDisplay();
+                document.getElementById('visitorCount').textContent = stats.visitors;
+                document.getElementById('downloadCount').textContent = stats.downloads;
+            } catch (error) {
+                console.error('Error loading stats:', error);
             }
-
-            // Display download count
-            const downloadCount = localStorage.getItem('downloadCount') || '0';
-            document.getElementById('downloadCount').textContent = downloadCount;
         }
 
-        // Track downloads when icons are right-clicked
-        function trackDownload() {
-            let downloadCount = parseInt(localStorage.getItem('downloadCount') || '0');
-            downloadCount++;
-            localStorage.setItem('downloadCount', downloadCount.toString());
-            document.getElementById('downloadCount').textContent = downloadCount;
+        // Save stats to localStorage
+        function saveStats() {
+            try {
+                localStorage.setItem('fs24_stats', JSON.stringify(stats));
+            } catch (error) {
+                console.error('Error saving stats:', error);
+            }
         }
 
-        // Add download tracking to icon canvases
-        function addDownloadTracking() {
-            const canvases = document.querySelectorAll('canvas');
-            canvases.forEach(canvas => {
-                canvas.addEventListener('contextmenu', () => {
-                    trackDownload();
-                });
-            });
+        // Update stats display
+        function updateStatsDisplay() {
+            try {
+                const statsElement = document.getElementById('stats');
+                if (statsElement) {
+                    statsElement.innerHTML = `👥 ${stats.visitors} | ⬇️ ${stats.downloads}`;
+                }
+            } catch (error) {
+                console.error('Error updating stats display:', error);
+            }
         }
 
-        // Initialize tracking on page load
-        initializeTracking();
+        // Track visitor on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            stats.visitors++;
+            saveStats();
+            updateStatsDisplay();
+            document.getElementById('visitorCount').textContent = stats.visitors;
+        });
 
-        // Add to existing script
+        // Update likes functionality
         function initializeLikes() {
             const likeButton = document.getElementById('likeButton');
             const likeCount = document.getElementById('likeCount');
             
             // Load like state and count
-            let likes = parseInt(localStorage.getItem('likeCount') || '0');
-            const hasLiked = localStorage.getItem('hasLiked') === 'true';
+            let likes = parseInt(localStorage.getItem('fs24_likes') || '0');
+            const hasLiked = localStorage.getItem('fs24_hasLiked') === 'true';
             
             // Update initial state
             likeCount.textContent = likes;
@@ -1396,26 +1431,21 @@
             }
             
             // Add click handler
-            likeButton.addEventListener('click', () => {
+            likeButton.onclick = () => {
                 if (!hasLiked) {
                     likes++;
-                    localStorage.setItem('likeCount', likes.toString());
-                    localStorage.setItem('hasLiked', 'true');
+                    localStorage.setItem('fs24_likes', likes.toString());
+                    localStorage.setItem('fs24_hasLiked', 'true');
                     likeButton.classList.add('liked');
                     likeCount.textContent = likes;
                     
                     // Add animation
                     likeButton.style.animation = 'none';
                     likeButton.offsetHeight; // Trigger reflow
-                    likeButton.style.animation = null;
+                    likeButton.style.animation = 'likeAnimation 0.5s ease';
                 }
-            });
+            };
         }
-
-        // Initialize likes after DOM content is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            initializeLikes();
-        });
 
         // Add category mapping
         const categoryMapping = {
